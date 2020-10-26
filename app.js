@@ -10,6 +10,86 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+inquirer.prompt([
+    // Manager
+    {
+        type: 'input',
+        name: 'managerName',
+        message: "Enter your manager's name."
+    },
+    {
+        type: 'input',
+        name: 'managerId',
+        message: "Enter your manager's ID."
+    },
+    {
+        type: 'input',
+        name: 'managerEmail',
+        message: "Enter your manager's email."
+    },
+    {
+        type: 'input',
+        name: 'managerOffice',
+        message: "Enter your manager's office number."
+    },
+    // Engineer
+    {
+        type: 'input',
+        name: 'engineerName',
+        message: "Enter your engineer's name."
+    },
+    {
+        type: 'input',
+        name: 'engineerId',
+        message: "Enter your engineer's ID."
+    },
+    {
+        type: 'input',
+        name: 'engineerEmail',
+        message: "Enter your engineer's email."
+    },
+    {
+        type: 'input',
+        name: 'engineerGithub',
+        message: "Enter your engineer's github username."
+    },
+    // Intern
+    {
+        type: 'input',
+        name: 'internName',
+        message: "Enter your intern's name."
+    },
+    {
+        type: 'input',
+        name: 'internId',
+        message: "Enter your intern's ID."
+    },
+    {
+        type: 'input',
+        name: 'internEmail',
+        message: "Enter your intern's email."
+    },
+    {
+        type: 'input',
+        name: 'internSchool',
+        message: "Enter your intern's school."
+    }
+]).then((res) => {
+    const myManager = new Manager(res.managerName, res.managerId, res.managerEmail, res.managerOffice);
+    const myEngineer = new Engineer(res.engineerName, res.engineerId, res.engineerEmail, res.engineerGithub);
+    const myIntern = new Intern(res.internName, res.internId, res.internEmail, res.internSchool);
+
+    let teamArr = [myManager, myEngineer, myIntern];
+
+    const html = render(teamArr);
+
+    fs.writeFile('./output/team.html', html, (err) => {
+        if (err) throw err;
+        console.log("File Saved.");
+    })
+});
+
+
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
