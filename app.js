@@ -15,64 +15,94 @@ inquirer.prompt([
     {
         type: 'input',
         name: 'managerName',
-        message: "Enter your manager's name."
+        message: "Enter the manager's name."
     },
     {
         type: 'input',
         name: 'managerId',
-        message: "Enter your manager's ID."
+        message: "Enter the manager's ID."
     },
     {
         type: 'input',
         name: 'managerEmail',
-        message: "Enter your manager's email."
+        message: "Enter the manager's email.",
+        validate: function (email) {
+            valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+
+            if (valid) {
+                return true;
+            } else {
+                console.log(".  Please enter a valid email")
+                return false;
+            }
+        }
     },
     {
         type: 'input',
         name: 'managerOffice',
-        message: "Enter your manager's office number."
+        message: "Enter the manager's office number."
     },
     // Engineer
     {
         type: 'input',
         name: 'engineerName',
-        message: "Enter your engineer's name."
+        message: "Enter the engineer's name."
     },
     {
         type: 'input',
         name: 'engineerId',
-        message: "Enter your engineer's ID."
+        message: "Enter the engineer's ID."
     },
     {
         type: 'input',
         name: 'engineerEmail',
-        message: "Enter your engineer's email."
+        message: "Enter the engineer's email.",
+        validate: function (email) {
+            valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+
+            if (valid) {
+                return true;
+            } else {
+                console.log(".  Please enter a valid email")
+                return false;
+            }
+        }
     },
     {
         type: 'input',
         name: 'engineerGithub',
-        message: "Enter your engineer's github username."
+        message: "Enter the engineer's github username."
     },
     // Intern
     {
         type: 'input',
         name: 'internName',
-        message: "Enter your intern's name."
+        message: "Enter the intern's name."
     },
     {
         type: 'input',
         name: 'internId',
-        message: "Enter your intern's ID."
+        message: "Enter the intern's ID."
     },
     {
         type: 'input',
         name: 'internEmail',
-        message: "Enter your intern's email."
+        message: "Enter the intern's email.",
+        validate: function (email) {
+            valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+
+            if (valid) {
+                return true;
+            } else {
+                console.log(".  Please enter a valid email")
+                return false;
+            }
+        }
     },
     {
         type: 'input',
         name: 'internSchool',
-        message: "Enter your intern's school."
+        message: "Enter the intern's school."
     }
 ]).then((res) => {
     const myManager = new Manager(res.managerName, res.managerId, res.managerEmail, res.managerOffice);
